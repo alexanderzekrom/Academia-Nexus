@@ -1,0 +1,172 @@
+DIAGRAMA ENTIDAD-RELACIÓN - Academia Nexus
+==========================================
+
+REPRESENTACIÓN VISUAL DEL MODELO
+=================================
+
++----------------+         +-------------------+
+|   ESTUDIANTE   |         | AREA_CONOCIMIENTO|
++----------------+         +-------------------+
+| PK id_estudiante|         | PK id_area       |
+| nombre_completo|<-------| nombre_area      |
+| fecha_nacimiento|       | descripcion      |
+| correo_electronico|     +-------------------+
+| telefono       |
+| fecha_ingreso  |              |
+| estado         |              |
+| nota_promedio  |              |
+| materias_rep_consec|         |
++----------------+              |
+        |                      |
+        | 1                    | 1
+        |                      |
+        | N                    | N
+        |                      |
+        v                      v
++----------------+     +-------------------+
+|  INSCRIPCION   |---->|     MATERIA       |
++----------------+  N  | +-----------------+
+| PK id_inscripcion|    | PK id_materia    |
+| FK id_estudiante|----+| nombre_materia   |
+| FK id_materia   |    | codigo_materia   |
+| FK id_ciclo     |    | creditos         |
+| fecha_inscripcion|    | horario          |
+| nota_final      |    | cupo_maximo      |
+| estado          |    | FK id_area       |
++----------------+    | nota_min_aprob   |
+        |             | estado           |
+        |             +-----------------+
+        |                     |
+        |                     | 1
+        | N                   |
+        |                     | N
+        |                     v
+        |          +-------------------+
+        |          | REQUISITO_MATERIA |
+        |          +-------------------+
+        |          | PK id_requisito   |
+        |          | FK id_materia     | (materia que requiere)
+        |          | FK id_materia_req | (materia previa requerida)
+        |          | tipo_requisito    |
+        |          +-------------------+
+        |                     |
+        |                     | N
+        |                     |
+        |                     | 1
+        |                     |
+        v                     |
++----------------+            |
+|     CICLO      |------------+
++----------------+  1
+| PK id_ciclo    |------+
+| nombre_ciclo   |      |
+| fecha_inicio   |      |
+| fecha_fin      |      |
+| estado         |      |
++----------------+      |
+        |               |
+        | 1             | N
+        |               |
+        | N             v
+        |      +-------------------+
+        +------| EVALUACION        |
+               +-------------------+
+               | PK id_evaluacion  |
+               | FK id_inscripcion |
+               | tipo_evaluacion   |
+               | descripcion       |
+               | nota              |
+               | fecha_evaluacion  |
+               | porcentaje_peso   |
+               +-------------------+
+
++----------------+           +------------------+
+|   PROFESOR     |           |CERTIFICACION_PROF|
++----------------+           +------------------+
+| PK id_profesor |           | PK id_certificacion
+| nombre_completo|<----------| FK id_profesor   |
+| correo_electronico|       | FK id_materia    |
+| telefono       |           | fecha_cert      |
+| fecha_contratacion|       | estado           |
+| estado         |           +------------------+
++----------------+                    |
+        |                             |
+        | 1                           | 1
+        |                             |
+        | N                           | N
+        |                             |
+        v                             v
++---------------------+     +---------------------+
+|ASIGNACION_PROFESOR  |---->|      MATERIA        |
++---------------------+  N  | +-------------------+
+| PK id_asignacion    |     | (ya definido arriba)|
+| FK id_profesor      |-----+|                     |
+| FK id_materia       |     +-------------------+
+| FK id_ciclo         |
+| fecha_asignacion    |
++---------------------+
+
++-------------------+
+| HISTORIAL_ACADEMICO|
++-------------------+
+| PK id_historial    |
+| FK id_estudiante   |---+
+| FK id_materia      |   |
+| FK id_ciclo        |   |
+| nota_final         |   |
+| fecha_aprobacion   |   |
+| intento_numero     |   |
++-------------------+   |
+        |               |
+        | N             | 1
+        |               |
+        +---------------+
+                |
+                v
+        +----------------+
+        |  ESTUDIANTE     |
+        |  (ya definido) |
+        +----------------+
+
+
+LEYENDA DE CARDINALIDADES
+==========================
+
+1:N  = Uno a muchos
+N:1  = Muchos a uno
+1:1  = Uno a uno
+N:N  = Muchos a muchos (resuelto con tablas intermedias)
+
+PK   = Primary Key (Clave Primaria)
+FK   = Foreign Key (Clave Foránea)
+
+
+RESUMEN DE RELACIONES PRINCIPALES
+==================================
+
+1. ESTUDIANTE ----(1:N)---- INSCRIPCION
+2. MATERIA ----(1:N)---- INSCRIPCION
+3. CICLO ----(1:N)---- INSCRIPCION
+4. INSCRIPCION ----(1:N)---- EVALUACION
+5. MATERIA ----(N:1)---- AREA_CONOCIMIENTO
+6. MATERIA ----(1:N)---- REQUISITO_MATERIA (autorrelación)
+7. MATERIA ----(1:N)---- CERTIFICACION_PROFESOR
+8. PROFESOR ----(1:N)---- CERTIFICACION_PROFESOR
+9. PROFESOR ----(1:N)---- ASIGNACION_PROFESOR
+10. MATERIA ----(1:N)---- ASIGNACION_PROFESOR
+11. CICLO ----(1:N)---- ASIGNACION_PROFESOR
+12. ESTUDIANTE ----(1:N)---- HISTORIAL_ACADEMICO
+13. MATERIA ----(1:N)---- HISTORIAL_ACADEMICO
+14. CICLO ----(1:N)---- HISTORIAL_ACADEMICO
+
+
+NOTAS DE DISEÑO
+================
+
+- El modelo está en Tercera Forma Normal (3NF)
+- No hay atributos multivaluados
+- No hay dependencias transitivas
+- Todas las relaciones están normalizadas
+- Las relaciones N:N se resuelven con tablas intermedias
+- Las claves primarias son de tipo simple (no compuestas)
+- Las claves foráneas mantienen integridad referencial

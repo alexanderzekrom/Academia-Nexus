@@ -1,0 +1,216 @@
+base de datos sql para:
+REGLA: todo cambio que se de en el context con el desarollo del proyecto se agregara a este documento,
+se eliminara la parte y se remplazara por la nueva parte
+
+Proyecto Base: Academia Nexus
+Contexto
+Base de datos: academia_nexus (PostgreSQL 15.x)
+Nomenclatura: academia_nexus.public.nombre_tabla (para todas las referencias)
+
+Requisitos Técnicos:
+====================
+- Motor de base de datos: PostgreSQL 15.x o superior
+- Memoria RAM mínima: 4GB (recomendado 8GB)
+- Espacio en disco: 50GB mínimo para producción
+- Sistema operativo: Linux (Ubuntu 22.04 LTS recomendado) o Windows Server 2019+
+- Conexión: TCP/IP, puerto 5432 (configurable)
+
+Documentos del proyecto: Ver docs/documentos_proyecto.txt
+
+ESTADO DEL PROYECTO: FASE 1 COMPLETADA
+=======================================
+Fecha de finalización Fase 1: 20 de junio de 2025
+
+LO COMPLETADO EN FASE 1:
+========================
+- Base de datos creada con todas las estructuras
+- 11 tablas con relaciones y restricciones
+- 9 triggers implementando reglas de negocio
+- 10 procedimientos almacenados para operaciones comunes
+- 10 vistas almacenadas para simplificar consultas
+- 7 vistas con joins complejos para análisis avanzado
+- Consultas útiles para operaciones frecuentes
+- Datos de prueba para validar el sistema
+- Sistema validado y funcionando correctamente
+
+KPIs FASE 1 (Logrados):
+========================
+- Tiempo de ejecución de consultas: < 100ms promedio
+- Integridad referencial: 100%
+- Cobertura de reglas de negocio: 100%
+- Tests de validación: 100% exitosos
+
+PLANIFICACIÓN DE FASES FUTURAS:
+================================
+
+Prioridades: CRÍTICA | IMPORTANTE | OPCIONAL
+Estimaciones: Tiempo de desarrollo (semanas) | Esfuerzo (horas)
+
+FASE 2: SISTEMA DE ROLES Y PERMISOS [CRÍTICA]
+===============================================
+Tiempo estimado: 4 semanas | Esfuerzo: 160 horas
+Dependencias: Fase 1 completada
+- Implementar sistema de roles (Admin, Profesor, Estudiante, Secretario)
+- Crear tabla de roles y permisos
+- Implementar autenticación y autorización
+- Restringir acceso a procedimientos según rol
+- Crear vistas específicas por rol
+- Implementar auditoría de acciones por usuario
+
+KPIs FASE 2 (Objetivos):
+========================
+- Tiempo de autenticación: < 500ms
+- Cobertura de permisos: 100% de procedimientos protegidos
+- Auditoría: 100% de acciones registradas
+- Tests de seguridad: 100% exitosos
+
+FASE 3: REGLAS DE NEGOCIO ADICIONALES [IMPORTANTE]
+===================================================
+Tiempo estimado: 3 semanas | Esfuerzo: 120 horas
+Dependencias: Fase 2 completada
+- Implementar sistema de prerequisitos más complejos
+- Agregar reglas de correlatividad por área
+- Implementar sistema de equivalencias de materias
+- Crear reglas de límites de carga por rendimiento
+- Implementar sistema de alertas tempranas más avanzado
+- Agregar reglas de dedicación horaria mínima
+
+FASE 4: MÓDULO DE HORARIOS Y AULAS [IMPORTANTE]
+===============================================
+Tiempo estimado: 5 semanas | Esfuerzo: 200 horas
+Dependencias: Fase 2 completada
+- Crear tabla de aulas con capacidad y equipamiento
+- Implementar sistema de asignación de aulas
+- Crear vista de horarios por estudiante
+- Crear vista de horarios por profesor
+- Implementar detección de conflictos de horarios
+- Sistema de reservas de espacios especiales
+
+FASE 5: MÓDULO DE PAGOS Y BECAS [IMPORTANTE]
+==============================================
+Tiempo estimado: 4 semanas | Esfuerzo: 160 horas
+Dependencias: Fase 2 completada
+- Crear tabla de conceptos de pago
+- Implementar sistema de generación de pagos
+- Crear tabla de becas y descuentos
+- Implementar reglas de asignación de becas
+- Sistema de seguimiento de pagos pendientes
+- Reportes financieros por estudiante y carrera
+
+FASE 6: MÓDULO DE COMUNICACIÓN [OPCIONAL]
+========================================
+Tiempo estimado: 3 semanas | Esfuerzo: 120 horas
+Dependencias: Fase 2 completada
+- Crear sistema de notificaciones
+- Implementar tabla de anuncios y comunicados
+- Sistema de mensajería interna
+- Crear sistema de recordatorios automáticos
+- Implementar estadísticas de comunicación
+- Sistema de encuestas y feedback
+
+FASE 7: REPORTES Y ANALÍTICA AVANZADA [OPCIONAL]
+================================================
+Tiempo estimado: 6 semanas | Esfuerzo: 240 horas
+Dependencias: Fases 2-5 completadas
+- Crear sistema de reportes dinámicos
+- Implementar cuadros de mando (dashboards)
+- Análisis de rendimiento por cohorte
+- Sistema de predicción de deserción
+- Análisis de eficiencia docente
+- Exportación de reportes en múltiples formatos
+
+FASE 8: INTEGRACIÓN Y API [OPCIONAL]
+====================================
+Tiempo estimado: 5 semanas | Esfuerzo: 200 horas
+Dependencias: Fases 2-5 completadas
+- Crear API REST para integración externa
+- Implementar sistema de webhooks
+- Crear documentación de API
+- Sistema de autenticación para API
+- Implementar rate limiting
+- Sistema de logs de API
+
+NOTAS PARA DESARROLLO FUTURO:
+==============================
+- Mantener nomenclatura academia_nexus.public.nombre_tabla
+- Seguir usando PostgreSQL 15.x como motor de base de datos
+- Documentar cada nueva fase en contexto.txt
+- Probar cada nueva fase con datos de prueba específicos
+- Mantener compatibilidad con Fase 1 (no breaking changes)
+
+ESTRATEGIA DE MIGRACIÓN ENTRE FASES:
+====================================
+- Cada fase se implementará en schema separado para testing
+- Migración a producción solo después de validación completa
+- Backups automáticos antes de cada migración
+- Documentación de cambios breaking y no-breaking
+- Plan de rollback para cada fase
+
+CONTEXTO DEL NEGOCIO Y REGLAS
+==============================
+
+Descripción del Modelo Educativo:
+---------------------------------
+La academia Nexus Learning Institute implementa un modelo educativo innovador donde los estudiantes construyen su propia carrera profesional mediante rutas de aprendizaje especializadas.
+
+Cada materia pertenece a un área de conocimiento y algunas requieren dominar otras previamente. Los estudiantes tienen un límite de carga académica por ciclo para evitar sobrecarga de trabajo.
+
+Los profesores pueden impartir varias materias, pero solo aquellas para las que están certificados.
+
+La institución mide el progreso mediante evaluaciones continuas y requisitos académicos estrictos.
+
+Reglas de Negocio:
+------------------
+Regla 1: Límite de materias
+Un estudiante no puede inscribir más de 6 materias por ciclo.
+
+Regla 2: Requisitos previos
+Para cursar:
+- Bases de Datos II → aprobar Bases de Datos I
+- Redes II → aprobar Redes I
+- Programación Avanzada → aprobar Programación I y II
+
+Regla 3: Aprobación
+Nota mínima: 7.0
+
+Regla 4: Baja académica
+Tres materias reprobadas consecutivamente generan estado de observación.
+
+Reglas de Negocio - Módulo de Pagos (FASE 5):
+=============================================
+Regla 5: Generación de pagos
+Los pagos se generan automáticamente al inicio de cada ciclo académico.
+
+Regla 6: Beca por mérito académico
+Estudiantes con promedio ≥ 9.0 obtienen 50% de descuento en matrícula.
+
+Regla 7: Beca socioeconómica
+Estudiantes con certificado socioeconómico aprobado obtienen 30% de descuento.
+
+Regla 8: Límite de morosidad
+Estudiantes con más de 2 pagos pendientes no pueden inscribir nuevas materias.
+
+Reglas de Negocio - Módulo de Comunicación (FASE 6):
+===================================================
+Regla 9: Notificaciones obligatorias
+Los estudiantes deben recibir notificaciones de:
+- Inscripciones exitosas (inmediato)
+- Calificaciones publicadas (24 horas)
+- Pagos pendientes (semanal)
+
+Regla 10: Anuncios académicos
+Los anuncios deben tener fecha de expiración máxima de 30 días.
+
+Regla 11: Encuestas de satisfacción
+Encuestas de curso deben enviarse dentro de los 7 días posteriores al cierre del ciclo.
+
+Reglas de Negocio - Módulo de Horarios (FASE 4):
+================================================
+Regla 12: Conflicto de horarios
+Un estudiante no puede inscribir dos materias en el mismo horario.
+
+Regla 13: Capacidad de aulas
+No se puede asignar más estudiantes que la capacidad máxima del aula.
+
+Regla 14: Reserva de espacios especiales
+Laboratorios y auditorios requieren reserva con 48 horas de anticipación.

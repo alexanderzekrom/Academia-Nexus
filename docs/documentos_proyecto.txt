@@ -1,0 +1,76 @@
+Documentos del Proyecto Academia Nexus
+=====================================
+
+ESTADO: FASE 1 COMPLETADA
+Fecha de creación: 20 de junio de 2025
+Última actualización: 20 de junio de 2025
+
+ESTRUCTURA DE CARPETAS:
+======================
+/
+├── docs/                 # Documentos de contexto y documentación
+│   ├── contexto.txt       # Documento principal de contexto del proyecto
+│   ├── documentos_proyecto.txt  # Este archivo - lista de documentos
+│   ├── etapas_proyecto.txt       # Etapas del desarrollo
+│   ├── entidades_relaciones.txt  # Definición de entidades y relaciones
+│   └── diagrama_er.txt           # Diagrama entidad-relación visual
+└── sql/                  # Scripts SQL de base de datos
+    ├── 00_creacion_base_datos.sql
+    ├── 01_creacion_tablas.sql
+    ├── 02_triggers_reglas_negocio.sql
+    ├── 03_procedimientos_almacenados.sql
+    ├── 04_vistas_almacenadas.sql
+    ├── 05_vistas_joins_complejos.sql
+    ├── 06_conservas_utiles.sql
+    └── 07_datos_prueba.sql
+
+DOCUMENTOS CREADOS EN FASE 1:
+=============================
+
+Documentos de contexto (carpeta docs/):
+- contexto.txt (documento principal de contexto del proyecto)
+- documentos_proyecto.txt (lista de documentos del proyecto)
+- etapas_proyecto.txt (etapas del desarrollo)
+- entidades_relaciones.txt (definición de entidades y relaciones)
+- diagrama_er.txt (diagrama entidad-relación visual)
+
+Scripts SQL (carpeta sql/ - Base de datos academia_nexus - PostgreSQL 15.x):
+- 00_creacion_base_datos.sql (script creación base de datos)
+- 01_creacion_tablas.sql (script creación de tablas)
+- 02_triggers_reglas_negocio.sql (script triggers para reglas de negocio)
+- 03_procedimientos_almacenados.sql (script procedimientos almacenados)
+- 04_vistas_almacenadas.sql (script vistas almacenadas)
+- 05_vistas_joins_complejos.sql (script vistas con joins complejos)
+- 06_conservas_utiles.sql (script consultas útiles)
+- 07_datos_prueba.sql (script datos de prueba)
+
+NOMENCLATURA:
+=============
+Base de datos: academia_nexus (PostgreSQL 15.x)
+Formato completo: academia_nexus.public.nombre_tabla (para todas las referencias)
+
+CAMBIOS REALIZADOS:
+===================
+- Actualizados todos los scripts SQL a PostgreSQL 15.x
+- Corregidas fechas de 2045-2046 a 2024-2025 para consistencia temporal
+- Mantenida nomenclatura academia_nexus.public.nombre_tabla en todos los archivos
+- Actualizado contexto.txt con mejoras de estructura y nuevas reglas de negocio
+- Organizados archivos en estructura de carpetas: docs/ y sql/
+
+NOTAS:
+======
+Este archivo se mantiene actualizado conforme se crean nuevos documentos en las fases posteriores del proyecto.
+Todos los scripts SQL siguen la nomenclatura estándar y están optimizados para PostgreSQL 15.x.
+
+Ejecución de scripts SQL:
+========================
+Para ejecutar los scripts en orden:
+1. cd sql/
+2. psql -U postgres -f 00_creacion_base_datos.sql
+3. psql -U postgres -d academia_nexus -f 01_creacion_tablas.sql
+4. psql -U postgres -d academia_nexus -f 02_triggers_reglas_negocio.sql
+5. psql -U postgres -d academia_nexus -f 03_procedimientos_almacenados.sql
+6. psql -U postgres -d academia_nexus -f 04_vistas_almacenadas.sql
+7. psql -U postgres -d academia_nexus -f 05_vistas_joins_complejos.sql
+8. psql -U postgres -d academia_nexus -f 06_conservas_utiles.sql
+9. psql -U postgres -d academia_nexus -f 07_datos_prueba.sql

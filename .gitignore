@@ -1,0 +1,41 @@
+# Archivos temporales y de sistema
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Archivos de log
+*.log
+
+# Archivos de configuración locales
+.env
+.env.local
+
+# Archivos de backup
+*.bak
+*.backup
+
+# Archivos de base de datos locales
+*.db
+*.sqlite
+*.sqlite3
+
+# Archivos temporales de editores
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Archivos compilados
+*.pyc
+__pycache__/
+
+# Archivos de Node.js (si se agrega frontend en el futuro)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Archivos de PostgreSQL (si se crean dumps)
+*.dump
+*.sql.gz

@@ -1,0 +1,89 @@
+Etapas del Proyecto - Academia Nexus (Base de Datos SQL)
+
+================================================
+
+ETAPA 1: Análisis de Requisitos
+--------------------------------
+- Identificar entidades principales del sistema
+- Definir atributos de cada entidad
+- Establecer relaciones entre entidades
+- Documentar reglas de negocio
+
+ETAPA 2: Diseño del Modelo Entidad-Relación
+-------------------------------------------
+- Crear diagrama ER conceptual
+- Definir cardinalidades de relaciones
+- Identificar claves primarias y foráneas
+- Normalizar el modelo hasta 3NF
+
+ETAPA 3: Diseño Físico de la Base de Datos
+------------------------------------------
+- Seleccionar sistema de gestión de base de datos (MySQL, PostgreSQL, SQL Server, etc.)
+- Definir tipos de datos para cada atributo
+- Establecer restricciones (NOT NULL, UNIQUE, CHECK, DEFAULT)
+- Crear índices necesarios
+
+ETAPA 4: Creación de Scripts SQL
+---------------------------------
+- Script de creación de tablas (DDL)
+- Script de inserción de datos de prueba (DML)
+- Script de creación de vistas
+- Script de creación de procedimientos almacenados
+- Script de creación de triggers
+
+ETAPA 5: Implementación de Reglas de Negocio
+---------------------------------------------
+- Implementar restricciones de integridad
+- Crear triggers para validaciones complejas
+- Implementar procedimientos para inscripción de materias
+- Implementar procedimientos para control de carga académica
+- Implementar procedimientos para control de requisitos previos
+- Implementar procedimientos para control de aprobación (nota mínima 7.0)
+- Implementar procedimientos para control de baja académica
+
+ETAPA 6: Pruebas y Validación
+-------------------------------
+- Insertar datos de prueba
+- Probar restricciones y reglas de negocio
+- Verificar integridad de datos
+- Probar consultas típicas del sistema
+- Validar que se cumplan todas las reglas de negocio documentadas
+
+ETAPA 7: Documentación
+-----------------------
+- Documentación del esquema de base de datos
+- Diccionario de datos
+- Guía de instalación
+- Manual de consultas básicas
+- Documentación de procedimientos almacenados
+
+================================================
+Estado actual: FASE 1 COMPLETADA
+================================================
+Fecha de finalización Fase 1: 19 de junio de 2026
+
+FASE 1 COMPLETADA EXITOSAMENTE:
+================================
+✅ Análisis de Requisitos
+✅ Diseño del Modelo Entidad-Relación
+✅ Diseño Físico de la Base de Datos
+✅ Creación de Scripts SQL (DDL, DML, vistas, procedimientos, triggers)
+✅ Implementación de Reglas de Negocio básicas
+✅ Pruebas y Validación con datos de prueba
+✅ Documentación completa del sistema
+
+SISTEMA LISTO PARA FASE 2:
+===========================
+Base de datos funcional y validada.
+Estructura sólida para expansión futura.
+Documentación completa para desarrolladores.
+
+PRÓXIMAS FASES PLANIFICADAS:
+=============================
+FASE 2: Sistema de Roles y Permisos
+FASE 3: Reglas de Negocio Adicionales
+FASE 4: Módulo de Horarios y Aulas
+FASE 5: Módulo de Pagos y Becas
+FASE 6: Módulo de Comunicación
+FASE 7: Reportes y Analítica Avanzada
+FASE 8: Integración y API

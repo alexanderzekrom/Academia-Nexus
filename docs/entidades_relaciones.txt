@@ -1,0 +1,185 @@
+Entidades y Relaciones - Academia Nexus
+=========================================
+
+ENTIDADES PRINCIPALES
+=====================
+
+1. ESTUDIANTE
+-------------
+- id_estudiante (PK)
+- nombre_completo
+- fecha_nacimiento
+- correo_electronico
+- telefono
+- fecha_ingreso
+- estado (ACTIVO, INACTIVO, OBSERVACION, GRADUADO)
+- nota_promedio_general
+- materias_reprobadas_consecutivas
+
+2. MATERIA
+----------
+- id_materia (PK)
+- nombre_materia
+- codigo_materia
+- creditos
+- horario
+- cupo_maximo
+- id_area_conocimiento (FK)
+- nota_minima_aprobacion (DEFAULT 7.0)
+- estado (ACTIVA, INACTIVA)
+
+3. AREA_CONOCIMIENTO
+--------------------
+- id_area (PK)
+- nombre_area
+- descripcion
+
+4. PROFESOR
+-----------
+- id_profesor (PK)
+- nombre_completo
+- correo_electronico
+- telefono
+- fecha_contratacion
+- estado (ACTIVO, INACTIVO)
+
+5. CICLO
+--------
+- id_ciclo (PK)
+- nombre_ciclo
+- fecha_inicio
+- fecha_fin
+- estado (ACTIVO, CERRADO, FUTURO)
+
+6. INSCRIPCION
+--------------
+- id_inscripcion (PK)
+- id_estudiante (FK)
+- id_materia (FK)
+- id_ciclo (FK)
+- fecha_inscripcion
+- nota_final
+- estado (INSCRITO, APROBADO, REPROBADO, RETIRADO)
+
+7. EVALUACION
+-------------
+- id_evaluacion (PK)
+- id_inscripcion (FK)
+- tipo_evaluacion (EXAMEN_PARCIAL, EXAMEN_FINAL, TAREA, PROYECTO, QUIZ)
+- descripcion
+- nota
+- fecha_evaluacion
+- porcentaje_peso
+
+8. CERTIFICACION_PROFESOR
+-------------------------
+- id_certificacion (PK)
+- id_profesor (FK)
+- id_materia (FK)
+- fecha_certificacion
+- estado (ACTIVA, EXPIRADA)
+
+9. REQUISITO_MATERIA
+-------------------
+- id_requisito (PK)
+- id_materia (FK) - materia que requiere el requisito
+- id_materia_requisito (FK) - materia previa requerida
+- tipo_requisito (APROBAR, CURSAR)
+
+10. ASIGNACION_PROFESOR
+-----------------------
+- id_asignacion (PK)
+- id_profesor (FK)
+- id_materia (FK)
+- id_ciclo (FK)
+- fecha_asignacion
+
+11. HISTORIAL_ACADEMICO
+-----------------------
+- id_historial (PK)
+- id_estudiante (FK)
+- id_materia (FK)
+- id_ciclo (FK)
+- nota_final
+- fecha_aprobacion
+- intento_numero
+
+
+RELACIONES
+==========
+
+1. ESTUDIANTE - INSCRIPCION
+   - Un estudiante tiene muchas inscripciones (1:N)
+   - Una inscripción pertenece a un estudiante (N:1)
+
+2. MATERIA - INSCRIPCION
+   - Una materia tiene muchas inscripciones (1:N)
+   - Una inscripción pertenece a una materia (N:1)
+
+3. CICLO - INSCRIPCION
+   - Un ciclo tiene muchas inscripciones (1:N)
+   - Una inscripción pertenece a un ciclo (N:1)
+
+4. MATERIA - AREA_CONOCIMIENTO
+   - Una materia pertenece a un área de conocimiento (N:1)
+   - Un área de conocimiento tiene muchas materias (1:N)
+
+5. INSCRIPCION - EVALUACION
+   - Una inscripción tiene muchas evaluaciones (1:N)
+   - Una evaluación pertenece a una inscripción (N:1)
+
+6. PROFESOR - CERTIFICACION_PROFESOR
+   - Un profesor tiene muchas certificaciones (1:N)
+   - Una certificación pertenece a un profesor (N:1)
+
+7. MATERIA - CERTIFICACION_PROFESOR
+   - Una materia tiene muchas certificaciones (1:N)
+   - Una certificación pertenece a una materia (N:1)
+
+8. PROFESOR - ASIGNACION_PROFESOR
+   - Un profesor tiene muchas asignaciones (1:N)
+   - Una asignación pertenece a un profesor (N:1)
+
+9. MATERIA - ASIGNACION_PROFESOR
+   - Una materia tiene muchas asignaciones (1:N)
+   - Una asignación pertenece a una materia (N:1)
+
+10. CICLO - ASIGNACION_PROFESOR
+    - Un ciclo tiene muchas asignaciones (1:N)
+    - Una asignación pertenece a un ciclo (N:1)
+
+11. MATERIA - REQUISITO_MATERIA (autorrelación)
+    - Una materia puede tener muchos requisitos (1:N)
+    - Una materia puede ser requisito de muchas materias (1:N)
+    - Relación recursiva
+
+12. ESTUDIANTE - HISTORIAL_ACADEMICO
+    - Un estudiante tiene muchos registros históricos (1:N)
+    - Un registro histórico pertenece a un estudiante (N:1)
+
+13. MATERIA - HISTORIAL_ACADEMICO
+    - Una materia tiene muchos registros históricos (1:N)
+    - Un registro histórico pertenece a una materia (N:1)
+
+14. CICLO - HISTORIAL_ACADEMICO
+    - Un ciclo tiene muchos registros históricos (1:N)
+    - Un registro histórico pertenece a un ciclo (N:1)
+
+
+REGLAS DE NEGOCIO IMPLEMENTADAS EN EL MODELO
+============================================
+
+- Límite de 6 materias por ciclo (se valida a través de INSCRIPCION)
+- Requisitos previos (tabla REQUISITO_MATERIA)
+- Nota mínima 7.0 (atributo nota_minima_aprobacion en MATERIA)
+- Baja académica (materias_reprobadas_consecutivas en ESTUDIANTE)
+- Certificación de profesores (tabla CERTIFICACION_PROFESOR)
+- Asignación de profesores a materias por ciclo (tabla ASIGNACION_PROFESOR)
+
+
+NOTAS
+=====
+- Todos los campos son NOT NULL por defecto según requerimiento
+- Si se necesita información adicional específica, se crearán tablas auxiliares
+- PK = Primary Key
+- FK = Foreign Key
